@@ -58,17 +58,96 @@ bin  boot  dev  etc  home  lib  lib64  media  mnt  opt  proc  root  run  sbin  s
 # Exercise 2: Building Custom Images 
 ## Task 2.1: Simple Web Application
 ### Deliverable: 
+- Source code: available at my GitHub [repo](https://github.com/cesarnunezh/MPCS56550-DevOps/tree/main/homework2/exercise2)
+- Dockerfile: available [here](https://github.com/cesarnunezh/MPCS56550-DevOps/blob/main/homework2/exercise2/Dockerfile) but also here: 
+```
+# Use official Python image as base
+FROM python:3.12
+
+# Set working directory to /app
+WORKDIR /app
+
+# Copy requirements file and run pip install
+COPY requirements.txt .
+RUN pip install -r requirements.txt
+
+# Copy application code
+COPY . .
+
+#Expose port 5000
+EXPOSE 5000
+
+#Set the startup command
+CMD ["python", "-m", "app"]
+```
+- Docker build and run commands
 ```
 docker build -t my-python-app:v1 -f Dockerfile .
+docker run --name my-python-app -p 5000:5000 my-python-app:v1
 ```
+- Proof of running application
+![](images/ex2_app1.png)
+![](images/ex2_app2.png)
 
 ## Task 2.2: Multi-stage Build
 ### Deliverable:
+- Dockerfile: available [here](https://github.com/cesarnunezh/MPCS56550-DevOps/blob/main/homework2/exercise2/Dockerfile.multistage) but also here: 
+```
+# Stage 1 - Build Stage:
+# Use python:3.11 
+FROM python:3.11 AS stage1
+
+# Set working directory to /app
+WORKDIR /app
+
+# Install build dependencies 
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential gcc \
+  && rm -rf /var/lib/apt/lists/*
+
+# Copy requirements file and run pip install
+COPY requirements.txt .
+RUN pip install --prefix=/install -r requirements.txt
+
+# Stage 2 - Runtime Stage:
+# Use python:3.11-alpine (minimal Alpine-based Python image)
+FROM python:3.11-alpine AS stage2
+
+# Set working directory to /app
+WORKDIR /app
+
+# Copy the installed packages from the build stage
+COPY --from=stage1 /install /usr/local
+
+# Copy application code
+COPY . .
+
+#Expose port 5000
+EXPOSE 5000
+
+#Set the startup command
+CMD ["python", "-m", "app"]
+```
+- Screenshots showing image size comparison
+![](images/ex2_sizes.png)
+- Written analysis explaining the size difference and benefits:
+
+- Verification that both images work identically
+    - Single Stage: ![](images/ex2_normal.png)
+    - Multi Stage: ![](images/ex2_multistage.png)
 
 ## Task 2.3: Docker Hub Registry
 ### Deliverable:
-
+- Screenshots of Docker Hub repository with pushed images
+![](images/ex2_dockerhub.png)
 
 # Exercise 3: Docker Compose Multi-Container Application 
 ## Task 3.1: Web App with Database
 ### Deliverable:
+
+
+## CODE TO COPY FROM MNT
+```
+cd ~/projects/MPCS56550-DevOps/homework2
+cp -r '/mnt/c/Users/canun/OneDrive - The University of Chicago/1. MSCAPP/5. Winter 2026/DevOps/homework2/images' .
+```
