@@ -70,5 +70,3 @@ networks:
   backend_net: 
     internal: true
   frontend_net: {}
-
-# https://github.com/docker/awesome-compose/tree/master/nginx-flask-mysql  

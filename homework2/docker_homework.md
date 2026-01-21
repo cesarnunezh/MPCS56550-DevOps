@@ -144,10 +144,79 @@ CMD ["python", "-m", "app"]
 # Exercise 3: Docker Compose Multi-Container Application 
 ## Task 3.1: Web App with Database
 ### Deliverable:
-
-
-## CODE TO COPY FROM MNT
+- Complete application code: available [here](https://github.com/cesarnunezh/MPCS56550-DevOps/blob/main/homework2/exercise3)
+- Docker-compose.yaml
 ```
-cd ~/projects/MPCS56550-DevOps/homework2
-cp -r '/mnt/c/Users/canun/OneDrive - The University of Chicago/1. MSCAPP/5. Winter 2026/DevOps/homework2/images' .
+services:
+  backend:
+    build:
+      context: backend
+      target: runtime
+    restart: always
+    env_file: .env
+    ports:
+      - "5000:5000"
+    volumes:
+      - todo-logs:/backend/logs
+    depends_on:
+      db:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:5000/').read()"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 20s
+    networks:
+      - backend_net
+      - frontend_net
+
+  db:
+    image: mysql:8.0
+    env_file: .env
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 20s
+    volumes:
+      - todo-db:/var/lib/mysql
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    expose:
+      - 3306
+      - 33060
+    networks:
+      - backend_net
+    
+
+  proxy:
+    build: proxy
+    restart: always
+    env_file: .env
+    ports:
+      - "8080:80"
+    depends_on: 
+      backend:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost/"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    networks:
+      - frontend_net
+
+volumes:
+  todo-db:
+    driver: local
+  todo-logs:
+    driver: local
+  
+
+networks:
+  backend_net: 
+    internal: true
+  frontend_net: {}
 ```
