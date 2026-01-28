@@ -128,9 +128,13 @@ EXPOSE 5000
 #Set the startup command
 CMD ["python", "-m", "app"]
 ```
-- Screenshots showing image size comparison
+- Screenshots showing image size comparison:
+
 ![](images/ex2_sizes.png)
 - Written analysis explaining the size difference and benefits:
+    The main reason of the size difference is that a multi-stage Dockerfile separates the build-time from the
+    runtime. In that sense, we are using for runtime a subset of the build image that contains what is strictly 
+    necessary for the application. The smaller image also impacts the speed of deployment.
 
 - Verification that both images work identically
     - Single Stage: ![](images/ex2_normal.png)
