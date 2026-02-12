@@ -11,9 +11,12 @@ if [[ -z "$new_version" ]]; then
   exit 1
 fi
 
+print_sep() {
+  echo "=========================================================================="
+}
 
 # Creating the blue deployment environment
-echo "=========================================================================="
+print_sep
 echo "Creating the Blue deployment from blue-deployment.yaml..."
 kubectl apply -f ./blue-deployment.yaml
 echo
@@ -33,12 +36,12 @@ kubectl apply -f ./blue-green-service.yaml
 echo
 echo "Current image running: $(kubectl get deploy h5-q3-blue -o=jsonpath='{.spec.template.spec.containers[0].image}'; echo)"
 
-echo "=========================================================================="
+print_sep
 echo "Describing service..."
 kubectl describe service h5-q3-service
 echo
 
-echo "=========================================================================="
+print_sep
 # Creating the green deployment environment
 echo "Initializing Blue-Green Deployment..."
 echo "Creating the Green deployment from green-deployment.yaml..."
@@ -46,18 +49,18 @@ kubectl apply -f ./green-deployment.yaml
 echo
 
 # Initial state of deployment
-echo "=========================================================================="
+print_sep
 echo "Initial state of deployment after the creation of Green environment..."
 kubectl get pods -l app=nginx -o wide
 echo
 
-echo "=========================================================================="
+print_sep
 echo "Final state of deployment after the creation of Green environment..."
 sleep 10
 kubectl get pods -l app=nginx -o wide
 
 # Migrating the services 
-echo "=========================================================================="
+print_sep
 echo "Migrating service to Green environment..."
 ./switch-traffic.sh $new_version
 echo
@@ -66,7 +69,7 @@ if kubectl get pods -l app=nginx,color=green -o json \
   | jq -e '(.items | length) > 0 and all(.items[]; all(.status.containerStatuses[]?; .ready == true))' \
   >/dev/null
 then
-  echo "=========================================================================="
+  print_sep
   echo "Green is Ready with 2 pod running. Safe to clean up blue pods."
   kubectl scale deployment h5-q3-blue --replicas=0
   echo "Showing all available pods"
@@ -77,7 +80,7 @@ else
 fi
 echo
 
-echo "=========================================================================="
+print_sep
 echo "Describing service..."
 kubectl describe service h5-q3-service
 

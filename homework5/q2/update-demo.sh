@@ -1,5 +1,10 @@
 # Creating the deployment from an nginx image
-echo "=========================================================================="
+
+print_sep() {
+    echo "=========================================================================="
+}
+
+print_sep
 echo "Deployment application from rolling-update-deployment.yaml..."
 kubectl apply -f ./rolling-update-deployment.yaml
 echo
@@ -20,7 +25,7 @@ echo "Current image running: $(kubectl get deploy h5-q2 -o=jsonpath='{.spec.temp
 echo
 
 
-echo "=========================================================================="
+print_sep
 # Updating to nginx:stable-alpine-perl
 echo "Initializing Rolling update to nginx:stable-alpine-perl..."
 kubectl set image deployments/h5-q2 nginx=nginx:stable-alpine-perl
@@ -29,14 +34,14 @@ kubectl set image deployments/h5-q2 nginx=nginx:stable-alpine-perl
 kubectl rollout status deployment/h5-q2 --watch=true
 echo
 
-echo "=========================================================================="
+print_sep
 echo "Rolling update completed..."
 kubectl get pods -l app=nginx -o wide
 echo "Current image running: $(kubectl get deploy h5-q2 -o=jsonpath='{.spec.template.spec.containers[0].image}'; echo)"
 echo
-echo "=========================================================================="
+print_sep
 
-echo "=========================================================================="
+print_sep
 echo "Initializing Rollback"
 kubectl rollout undo deployment/h5-q2
 kubectl rollout status deployment/h5-q2
@@ -44,12 +49,12 @@ echo "Rollback completed..."
 echo "Current image running: $(kubectl get deploy h5-q2 -o=jsonpath='{.spec.template.spec.containers[0].image}'; echo)"
 echo
 
-# echo "=========================================================================="
+# print_sep
 # echo "Accessing to the app"
 # minikube service h5-q2 --url
 # sleep 5
 # curl http://127.0.0.1:46661
-# echo "=========================================================================="
+# print_sep
 
 # Delete all
 # echo "Deleting all deployments and services..."
