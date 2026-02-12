@@ -3,3 +3,4 @@ jenkins_example/
 growth-planner/
 Dockerfile.jenkins
 docker_example/
+*kubectl*
