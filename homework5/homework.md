@@ -57,12 +57,12 @@ Requirements:
 - Document the complete switching process
 
 ### Deliverables:
-- `blue-deployment.yaml` - Blue environment deployment: available [here](https://github.com/cesarnunezh/MPCS56550-DevOps/blob/main/homework5/q2/rolling-update-deployment.yaml).
-- `green-deployment.yaml` - Green environment deployment: available [here](https://github.com/cesarnunezh/MPCS56550-DevOps/blob/main/homework5/q2/rolling-update-deployment.yaml).
-- `blue-green-service.yaml` - Service configuration: available [here](https://github.com/cesarnunezh/MPCS56550-DevOps/blob/main/homework5/q2/rolling-update-deployment.yaml).
-- `switch-traffic.sh` - Script to switch traffic from blue to green: available [here](https://github.com/cesarnunezh/MPCS56550-DevOps/blob/main/homework5/q2/rolling-update-deployment.yaml).
-- `rollback.sh` - Script to rollback from green to blue: available [here](https://github.com/cesarnunezh/MPCS56550-DevOps/blob/main/homework5/q2/rolling-update-deployment.yaml).
-- `screenshots/` folder containing [(available here)](https://github.com/cesarnunezh/MPCS56550-DevOps/tree/main/homework5/q2/screenshots):
+- `blue-deployment.yaml` - Blue environment deployment: available [here](https://github.com/cesarnunezh/MPCS56550-DevOps/blob/main/homework5/q3/blue-deployment.yaml).
+- `green-deployment.yaml` - Green environment deployment: available [here](https://github.com/cesarnunezh/MPCS56550-DevOps/blob/main/homework5/q3/green-deployment.yaml).
+- `blue-green-service.yaml` - Service configuration: available [here](https://github.com/cesarnunezh/MPCS56550-DevOps/blob/main/homework5/q3/blue-green-service.yaml).
+- `switch-traffic.sh` - Script to switch traffic from blue to green: available [here](https://github.com/cesarnunezh/MPCS56550-DevOps/blob/main/homework5/q3/switch-traffic.sh).
+- `rollback.sh` - Script to rollback from green to blue: available [here](https://github.com/cesarnunezh/MPCS56550-DevOps/blob/main/homework5/q3/rollback.sh).
+- `screenshots/` folder containing [(available here)](https://github.com/cesarnunezh/MPCS56550-DevOps/tree/main/homework5/q3/screenshots):
   - `01-blue-deployment.png` - showing blue deployment running: ![](./q3/screenshots/01-blue-deployment.png)
   - `02-green-deployment.png` - showing both blue and green running: ![](./q3/screenshots/02-green-deployment.png)
   - `03-service-pointing-blue.png` - describe service showing blue selector: ![](./q3/screenshots/03-service-pointing-blue.png)
@@ -83,16 +83,16 @@ Requirements:
 - Provide a method to gradually increase traffic to canary
 
 #### Deliverables:
-- `stable-deployment.yaml` - Stable version deployment
-- `canary-deployment.yaml` - Canary version deployment
-- `stable-service.yaml` - Service for stable deployment
-- `canary-service.yaml` - Service for canary deployment
-- `canary-ingress.yaml` - Ingress configuration for traffic splitting
-- `canary-promotion.sh` - Script to gradually increase traffic to canary
-- `screenshots/` folder containing:
-  - `01-stable-deployment.png` - showing stable deployment running
-  - `02-canary-deployment.png` - showing both stable and canary running
-  - `03-traffic-split-20-80.png` - describe showing initial traffic split
-  - `04-traffic-test.png` - Multiple curl requests showing ~20% going to canary
-  - `05-promotion-50-50.png` - After promotion showing 50/50 traffic split
-  - `06-promotion-100.png` - Final state with 100% traffic to canary
+- `stable-deployment.yaml` - Stable version deployment: available [here](https://github.com/cesarnunezh/MPCS56550-DevOps/tree/main/homework5/q4/stable-deployment.yaml)
+- `canary-deployment.yaml` - Canary version deployment: available [here](https://github.com/cesarnunezh/MPCS56550-DevOps/tree/main/homework5/q4/canary-deployment.yaml)
+- `stable-service.yaml` - Service for stable deployment: available [here](https://github.com/cesarnunezh/MPCS56550-DevOps/tree/main/homework5/q4/stable-service.yaml)
+- `canary-service.yaml` - Service for canary deployment: available [here](https://github.com/cesarnunezh/MPCS56550-DevOps/tree/main/homework5/q4/canary-service.yaml)
+- `canary-ingress.yaml` - Ingress configuration for traffic splitting: available [here](https://github.com/cesarnunezh/MPCS56550-DevOps/tree/main/homework5/q4/canary-ingress.yaml)
+- `canary-promotion.sh` - Script to gradually increase traffic to canary: available [here](https://github.com/cesarnunezh/MPCS56550-DevOps/tree/main/homework5/q4/canary-promotion.sh)
+- `screenshots/` folder containing [(available here)](https://github.com/cesarnunezh/MPCS56550-DevOps/tree/main/homework5/q4/screenshots):
+  - `01-stable-deployment.png` - showing stable deployment running: ![](./q4/screenshots/01-stable-deployment.png)
+  - `02-canary-deployment.png` - showing both stable and canary running: ![](./q4/screenshots/02-canary-deployment.png)
+  - `03-traffic-split-20-80.png` - describe showing initial traffic split: ![](./q4/screenshots/03-traffic-split-20-80.png)
+  - `04-traffic-test.png` - Multiple curl requests showing ~20% going to canary: ![](./q4/screenshots/04-traffic-test.png)
+  - `05-promotion-50-50.png` - After promotion showing 50/50 traffic split: ![](./q4/screenshots/05-promotion-50-50.png)
+  - `06-promotion-100.png` - Final state with 100% traffic to canary: ![](./q4/screenshots/06-promotion-100.png)
