@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: stable-service
+spec:
+  selector:
+    app: h5-q4
+    type: stable
+  ports:
+    - name: http
+      port: 80
+      targetPort: 5678

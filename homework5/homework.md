@@ -34,15 +34,15 @@ Requirements:
   - Liveness probe
 
 ### Deliverables:
-- `rolling-update-deployment.yaml` - Complete deployment manifest
-- `rolling-update-service.yaml` - Service manifest to expose the deployment
-- `update-demo.sh` - Shell script demonstrating how to update the deployment to a new version
-- `screenshots/` folder containing:
-  - `01-initial-deployment.png` - get deployments/pods showing initial state
-  - `02-update-in-progress.png` - rollout status during update
-  - `03-update-completed.png` - get pods showing successful update
-  - `04-rollback-executed.png` - rollout undo command and result
-  - `05-service-endpoint.png` - curl or browser showing the service is accessible
+- `rolling-update-deployment.yaml` - Complete deployment manifest: available [here](https://github.com/cesarnunezh/MPCS56550-DevOps/blob/main/homework5/q2/rolling-update-deployment.yaml).
+- `rolling-update-service.yaml` - Service manifest to expose the deployment: available [here](https://github.com/cesarnunezh/MPCS56550-DevOps/blob/main/homework5/q2/rolling-update-service.yaml).
+- `update-demo.sh` - Shell script demonstrating how to update the deployment to a new version: available [here](https://github.com/cesarnunezh/MPCS56550-DevOps/blob/main/homework5/q2/update-demo.sh).
+- `screenshots/` folder containing [(available here)](https://github.com/cesarnunezh/MPCS56550-DevOps/tree/main/homework5/q2/screenshots):
+  - `01-initial-deployment.png` - get deployments/pods showing initial state: ![](./q2/screenshots/01-initial-deployment.png)
+  - `02-update-in-progress.png` - rollout status during update: ![](./q2/screenshots/02-update-in-progress.png)
+  - `03-update-completed.png` - get pods showing successful update: ![](./q2/screenshots/03-update-completed.png)
+  - `04-rollback-executed.png` - rollout undo command and result: ![](./q2/screenshots/04-rollback-executed.png)
+  - `05-service-endpoint.png` - curl or browser showing the service is accessible: ![](./q2/screenshots/05-service-endpoint.png)
 
 
 <div style="page-break-after: always;"></div>
@@ -57,18 +57,18 @@ Requirements:
 - Document the complete switching process
 
 ### Deliverables:
-- `blue-deployment.yaml` - Blue environment deployment
-- `green-deployment.yaml` - Green environment deployment
-- `blue-green-service.yaml` - Service configuration
-- `switch-traffic.sh` - Script to switch traffic from blue to green
-- `rollback.sh` - Script to rollback from green to blue
-- `screenshots/` folder containing:
-  - `01-blue-deployment.png` - showing blue deployment running
-  - `02-green-deployment.png` - showing both blue and green running
-  - `03-service-pointing-blue.png` - describe service showing blue selector
-  - `04-switch-to-green.png` - commands switching service to green
-  - `05-service-pointing-green.png` - describe service showing green selector
-  - `06-rollback-to-blue.png` - Execution of rollback script and verification
+- `blue-deployment.yaml` - Blue environment deployment: available [here](https://github.com/cesarnunezh/MPCS56550-DevOps/blob/main/homework5/q2/rolling-update-deployment.yaml).
+- `green-deployment.yaml` - Green environment deployment: available [here](https://github.com/cesarnunezh/MPCS56550-DevOps/blob/main/homework5/q2/rolling-update-deployment.yaml).
+- `blue-green-service.yaml` - Service configuration: available [here](https://github.com/cesarnunezh/MPCS56550-DevOps/blob/main/homework5/q2/rolling-update-deployment.yaml).
+- `switch-traffic.sh` - Script to switch traffic from blue to green: available [here](https://github.com/cesarnunezh/MPCS56550-DevOps/blob/main/homework5/q2/rolling-update-deployment.yaml).
+- `rollback.sh` - Script to rollback from green to blue: available [here](https://github.com/cesarnunezh/MPCS56550-DevOps/blob/main/homework5/q2/rolling-update-deployment.yaml).
+- `screenshots/` folder containing [(available here)](https://github.com/cesarnunezh/MPCS56550-DevOps/tree/main/homework5/q2/screenshots):
+  - `01-blue-deployment.png` - showing blue deployment running: ![](./q3/screenshots/01-blue-deployment.png)
+  - `02-green-deployment.png` - showing both blue and green running: ![](./q3/screenshots/02-green-deployment.png)
+  - `03-service-pointing-blue.png` - describe service showing blue selector: ![](./q3/screenshots/03-service-pointing-blue.png)
+  - `04-switch-to-green.png` - commands switching service to green: ![](./q3/screenshots/04-switch-to-green.png)
+  - `05-service-pointing-green.png` - describe service showing green selector: ![](./q3/screenshots/05-service-pointing-green.png)
+  - `06-rollback-to-blue.png` - Execution of rollback script and verification: ![](./q3/screenshots/06-rollback-to-blue.png)
 
 
 <div style="page-break-after: always;"></div>

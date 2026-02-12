@@ -45,7 +45,7 @@ echo "Current image running: $(kubectl get deploy h5-q2 -o=jsonpath='{.spec.temp
 echo
 
 # echo "=========================================================================="
-# echo "Initializing Rollback"
+# echo "Accessing to the app"
 # minikube service h5-q2 --url
 # sleep 5
 # curl http://127.0.0.1:46661

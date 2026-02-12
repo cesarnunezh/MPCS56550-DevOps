@@ -80,3 +80,9 @@ echo
 echo "=========================================================================="
 echo "Describing service..."
 kubectl describe service h5-q3-service
+
+# Delete all
+# echo "Deleting all deployments and services..."
+# kubectl delete deployment h5-q3-green
+# kubectl delete service h5-q3-services
+# kubectl delete service h5-q3-service

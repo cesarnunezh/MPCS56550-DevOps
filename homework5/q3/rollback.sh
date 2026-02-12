@@ -12,12 +12,12 @@ fi
 echo "=========================================================================="
 echo "Restoring 2 replicas at blue environment..."
 kubectl scale deployment h5-q3-blue --replicas=2
+sleep 5
 
 echo "Rolling back service to blue pods"
 kubectl patch service h5-q3-service -p "$(jq -n --arg v "$old_version" \
   '{spec:{selector:{app:"nginx",version:$v,color:"blue"}}}')"
 
-sleep 5
 echo "Final state of deployment after the rollback..."
 kubectl get pods -l app=nginx
 echo "Describing service..."
