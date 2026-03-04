@@ -1,20 +1,3 @@
-## Slide 1
-
-
-## Slide 2
-Serverless architecture represents an evolution of cloud computing beyond traditional IaaS and PaaS models by abstracting server management entirely from application developers.
-
-## Slide 3
-Serverless computing enables fine-grained, event-driven execution in which application logic is deployed as stateless functions and invoked only in response to specific events.
-
-## Slide 4
-
-## Slide 5
-
-## Slide 6
-
-## Slide 7
-
 ## Slide 8
 
 - $0 cost for idle infrastructure through scale-to-zero execution.
