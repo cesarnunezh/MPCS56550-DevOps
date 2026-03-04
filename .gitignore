@@ -3,6 +3,7 @@ jenkins_example/
 growth-planner/
 Dockerfile.jenkins
 docker_example/
+<<<<<<< HEAD
 *kubectl*
 *.terraform/
 
@@ -267,3 +268,6 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+=======
+*kubectl*
+>>>>>>> d413c7364579cea1be5503a196d8d10669b66b23
