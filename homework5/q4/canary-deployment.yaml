@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: h5-q4-canary
+  labels:
+    app: h5-q4
+    type: canary
+    version: v2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: h5-q4
+      type: canary
+  template:
+    metadata:
+      labels:
+        app: h5-q4
+        version: v2
+        type: canary
+    spec:
+      containers:
+        - name: http-echo
+          image: hashicorp/http-echo:1.0.0
+          args:
+            - "-listen=:5678"
+            - "-text=canary v2"
+          ports:
+            - containerPort: 5678

@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>homework.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="devops-homework-4---winter-2026">DevOps Homework 4 - Winter 2026</h1>
+<p><strong>Student:</strong> César Núñez<br>
+<strong>Date:</strong> 02/04/2026</p>
+<h1 id="part-1-environment-configuration">Part 1: Environment Configuration</h1>
+<h2 id="question-1">Question 1</h2>
+<p>Each environment progressively trades flexibility for stability:</p>
+<ul>
+<li>Development is an envieronment optimized for speed.</li>
+<li>Integration is an environment designed for correctness</li>
+<li>Staging is an environment that aims to mimic reality</li>
+<li>Production is an environment that requires reliability and security</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Environment</th>
+<th>Purpose/Characteristics</th>
+<th>Data Management</th>
+<th>Access Control &amp; Security</th>
+<th>Testing approaches</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Development</td>
+<td>Primary environment for writing, refactoring, and debugging code. Fast feedback loops, frequent changes, and tolerance for instability. Often local or ephemeral.</td>
+<td>Mock data, synthetic data, or small local databases. No real user data. Data can be reset or discarded freely</td>
+<td>Minimal access restrictions. Secrets usually mocked or injected via local env files. No production credentials. Static analysis tools may run locally</td>
+<td>Unit tests, basic integration tests, regression tests. Focus on sunny and rainy paths. Static analysis (linting, formatting, basic security checks)</td>
+</tr>
+<tr>
+<td>Integration</td>
+<td>Combines code from multiple developers into shared branches. Triggered automatically by version control events (CI). Validates that components work together</td>
+<td>Dedicated test databases derived from representative schemas or sanitized samples. No PII. Databases are reset between runs to ensure test isolation</td>
+<td>Restricted access to CI systems. Secrets managed via CI secret stores. Limited credentials scoped only to test resources</td>
+<td>Automated unit tests, integration tests, API tests. End-to-end tests at small scale. Focus on correctness and cross-component behavior</td>
+</tr>
+<tr>
+<td>Staging</td>
+<td>Pre-production environment that mirrors production as closely as possible. Used to validate performance, security, and deployment processes</td>
+<td>Production-like datasets or large sanitized snapshots. Data volume and structure should resemble production without exposing sensitive data</td>
+<td>Strong access controls similar to production. Secrets stored securely. Runtime security controls enabled. Penetration testing and vulnerability scanning allowed</td>
+<td>Load testing, stress testing, security testing, compliance testing, user acceptance testing. Validation of deployment and rollback procedures</td>
+</tr>
+<tr>
+<td>Production</td>
+<td>Live environment serving real users. Stability, availability, and security are the top priorities. Changes are carefully controlled and monitored</td>
+<td>Real production data. Strict data governance, backups, retention policies, and disaster recovery plans. No destructive testing on live data</td>
+<td>Strict role-based access control. Least-privilege permissions. Encrypted secrets, auditing, monitoring, and incident response processes in place</td>
+<td>Limited testing only: smoke tests, health checks, canary releases, blue-green deployments. Monitoring, logging, and alerting replace heavy testing</td>
+</tr>
+</tbody>
+</table>
+<h1 id="part-2-practical-implementation">Part 2: Practical Implementation</h1>
+<h2 id="question-2-jenkins-agent-configuration">Question 2: Jenkins Agent Configuration</h2>
+<p>Set up at least one Jenkins agent (slave node), configure agent labels for specific tasks (e.g., testing, deployment), distribute pipeline workload across multiple agents, and document agent setup and configuration process.</p>
+<h4 id="deliverables">Deliverables:</h4>
+<p>I was not able to create an agent. I'm running Jenkins in Docker and my app is running through a compose.yaml. I don't know how to connect them. I tried and received the following error:</p>
+<pre class="hljs"><code><div>SSHLauncher{host='172.19.40.47', port=22, credentialsId='2f70ef0b-e1a9-45c5-8970-07841904c71f', jvmOptions='', javaPath='', prefixStartSlaveCmd='', suffixStartSlaveCmd='', launchTimeoutSeconds=60, maxNumRetries=10, retryWaitTime=15, sshHostKeyVerificationStrategy=hudson.plugins.sshslaves.verifiers.KnownHostsFileKeyVerificationStrategy, tcpNoDelay=true, trackCredentials=true} [02/04/26 01:11:34] 
+
+[SSH] Opening SSH connection to 172.19.40.47:22. 
+
+Connection refused SSH Connection failed with IOException: &quot;Connection refused&quot;, retrying in 15 seconds. There are 10 more retries left. 
+Connection refused SSH Connection failed with IOException: &quot;Connection refused&quot;, retrying in 15 seconds. There are 9 more retries left. 
+
+Connection refused SSH Connection failed with IOException: &quot;Connection refused&quot;, retrying in 15 seconds. There are 8 more retries left. 
+Connection refused SSH Connection failed with IOException: &quot;Connection refused&quot;, retrying in 15 seconds. There are 7 more retries left.
+</div></code></pre>
+<h2 id="question-3-source-control-integration">Question 3: Source Control Integration</h2>
+<p>Configure webhook triggers from your Git repository and set up branch-specific pipeline behavior based on your preferences (e.g., different stages for main vs feature branches).</p>
+<h4 id="deliverables">Deliverables:</h4>
+<ul>
+<li>Webhook configuration screenshots from Git repository:
+<img src="/images/q3_1.png" alt=""></li>
+<li>Jenkinsfile showing branch-specific pipeline logic: available <a href="https://github.com/cesarnunezh/growth-planner/blob/main/Jenkinsfile">here</a>. Also here:</li>
+</ul>
+<pre class="hljs"><code><div>    stage('Build') {
+      steps {
+        script {
+          try {
+            if (env.BRANCH_NAME == 'main'){
+              sh '''
+                # Build your actual app images (rubric build step)
+                docker compose -p &quot;$COMPOSE_PROJECT_NAME&quot; build backend proxy
+
+                # Verify images exist
+                BACKEND_IMG=&quot;$(docker image ls \
+                  --filter &quot;label=com.docker.compose.project=$COMPOSE_PROJECT_NAME&quot; \
+                  --filter &quot;label=com.docker.compose.service=backend&quot; \
+                  --format '{{.ID}}' | head -n 1)&quot;
+                PROXY_IMG=&quot;$(docker image ls \
+                  --filter &quot;label=com.docker.compose.project=$COMPOSE_PROJECT_NAME&quot; \
+                  --filter &quot;label=com.docker.compose.service=proxy&quot; \
+                  --format '{{.ID}}' | head -n 1)&quot;
+                test -n &quot;$BACKEND_IMG&quot;
+                test -n &quot;$PROXY_IMG&quot;
+              '''
+              } else {
+              sh '''
+                echo &quot;This is not the main branch... Skip build&quot;
+              '''
+              }
+          } catch (error) {
+              slackSend(
+                  channel: '#all-devopstest',
+                  color: '#ff0000',
+                  message: &quot;Failure @ Build - ${env.JOB_NAME} \nError details: ${error.getMessage()}&quot;
+              )
+              throw error 
+          }
+        }
+      }
+    }
+</div></code></pre>
+<ul>
+<li>Screenshot of webhook triggering pipeline runs:
+<img src="/images/q3_2.png" alt="">
+<img src="/images/q3_3.png" alt=""></li>
+</ul>
+<h2 id="question-4-build-and-package">Question 4: Build and Package</h2>
+<p>Build application artifacts, version your builds using semantic versioning or build numbers, and store artifacts in Jenkins artifacts.</p>
+<h4 id="deliverables">Deliverables:</h4>
+<ul>
+<li>Build logs showing successful artifact creation:
+<img src="/images/q4_1.png" alt=""></li>
+<li>Screenshots of versioned artifacts in Jenkins:
+<img src="/images/q4_2.png" alt=""></li>
+<li>Build configuration in Jenkinsfile: available <a href="https://github.com/cesarnunezh/growth-planner/blob/main/Jenkinsfile">here</a>. Also here:</li>
+</ul>
+<pre class="hljs"><code><div>    stage('Build') {
+      steps {
+        script {
+          try {
+            if (env.BRANCH_NAME == 'main'){
+              sh '''
+                # Build your actual app images (rubric build step)
+                docker compose -p &quot;$COMPOSE_PROJECT_NAME&quot; build backend proxy
+
+                # Verify images exist
+                BACKEND_IMG=&quot;$(docker image ls \
+                  --filter &quot;label=com.docker.compose.project=$COMPOSE_PROJECT_NAME&quot; \
+                  --filter &quot;label=com.docker.compose.service=backend&quot; \
+                  --format '{{.ID}}' | head -n 1)&quot;
+                PROXY_IMG=&quot;$(docker image ls \
+                  --filter &quot;label=com.docker.compose.project=$COMPOSE_PROJECT_NAME&quot; \
+                  --filter &quot;label=com.docker.compose.service=proxy&quot; \
+                  --format '{{.ID}}' | head -n 1)&quot;
+                test -n &quot;$BACKEND_IMG&quot;
+                test -n &quot;$PROXY_IMG&quot;
+              '''
+              } else {
+              sh '''
+                echo &quot;This is not the main branch... Skip build&quot;
+              '''
+              }
+          } catch (error) {
+              slackSend(
+                  channel: '#all-devopstest',
+                  color: '#ff0000',
+                  message: &quot;Failure @ Build - ${env.JOB_NAME} \nError details: ${error.getMessage()}&quot;
+              )
+              throw error 
+          }
+        }
+      }
+      post {
+        success {
+          script {
+            if (env.BRANCH_NAME == 'main'){
+              slackSend channel: &quot;all-devopstest&quot;, color: &quot;#43e094&quot;, message: &quot;Success @ Build - ${env.JOB_NAME}&quot;
+
+              sh &quot;&quot;&quot;
+                set -eu
+                mkdir -p &quot;${ARTIFACT_DIR}&quot;
+
+                # find images by compose labels
+                backend_img=&quot;\$(docker image ls \
+                  --filter &quot;label=com.docker.compose.project=${COMPOSE_PROJECT_NAME}&quot; \
+                  --filter &quot;label=com.docker.compose.service=backend&quot; \
+                  --format '{{.ID}}' | head -n 1)&quot;
+                proxy_img=&quot;\$(docker image ls \
+                  --filter &quot;label=com.docker.compose.project=${COMPOSE_PROJECT_NAME}&quot; \
+                  --filter &quot;label=com.docker.compose.service=proxy&quot; \
+                  --format '{{.ID}}' | head -n 1)&quot;
+
+                test -n &quot;\$backend_img&quot;
+                test -n &quot;\$proxy_img&quot;
+
+                # versioned tags (human friendly)
+                BACKEND_TAG=&quot;growth-planner-backend:${APP_VERSION}&quot;
+                PROXY_TAG=&quot;growth-planner-proxy:${APP_VERSION}&quot;
+
+                docker tag &quot;\$backend_img&quot; &quot;\$BACKEND_TAG&quot;
+                docker tag &quot;\$proxy_img&quot;   &quot;\$PROXY_TAG&quot;
+
+                # versioned artifact files
+                docker save -o &quot;${ARTIFACT_DIR}/backend_${APP_VERSION}.tar&quot; &quot;\$BACKEND_TAG&quot;
+                docker save -o &quot;${ARTIFACT_DIR}/proxy_${APP_VERSION}.tar&quot;   &quot;\$PROXY_TAG&quot;
+
+                # include a small metadata file too
+                cat &gt; &quot;${ARTIFACT_DIR}/build_meta.txt&quot; &lt;&lt;EOF
+                version=${APP_VERSION}
+                branch=${BRANCH_NAME}
+                build_number=${BUILD_NUMBER}
+                git_commit=\$(git rev-parse --short HEAD || true)
+                EOF
+              &quot;&quot;&quot;
+              archiveArtifacts artifacts: &quot;${ARTIFACT_DIR}/**&quot;, fingerprint: true, onlyIfSuccessful: true
+            } else {
+              sh 'echo &quot;This is not the development branch... Skip saving images&quot;'
+            }
+          }
+        }
+      }
+    }
+</div></code></pre>
+<h2 id="question-5-code-quality-analysis">Question 5: Code Quality Analysis</h2>
+<p>Integrate with SonarQube to analyze code for bugs, vulnerabilities, and code smells, and configure quality gates that prevent deployment if quality standards aren't met.</p>
+<h4 id="deliverables">Deliverables:</h4>
+<ul>
+<li>SonarQube project configuration screenshots: <img src="/images/q6_1.png" alt=""></li>
+<li>SonarQube analysis reports with quality metrics: <img src="/images/q5_2.png" alt=""></li>
+<li>Quality gate configuration and pipeline failure evidence when standards not met: <img src="/images/q5_3.png" alt=""></li>
+</ul>
+<h2 id="question-6-database-management">Question 6: Database Management</h2>
+<p>Write the staging database schema to build staging database from scratch and seed staging database with test data.</p>
+<h4 id="deliverables">Deliverables:</h4>
+<ul>
+<li>Database schema scripts (SQL files or equivalent): available <a href="https://github.com/cesarnunezh/growth-planner/blob/main/db/init.sql">here</a>. Also here:</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-keyword">IF</span> <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">EXISTS</span> todos (
+  <span class="hljs-keyword">id</span> <span class="hljs-built_in">INT</span> <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span> AUTO_INCREMENT,
+  title <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">255</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
+  <span class="hljs-keyword">category</span> <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">64</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
+  deadline <span class="hljs-built_in">DATE</span> <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
+  done <span class="hljs-built_in">TINYINT</span>(<span class="hljs-number">1</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-number">0</span>,
+  created_at <span class="hljs-built_in">TIMESTAMP</span> <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-keyword">CURRENT_TIMESTAMP</span>,
+  PRIMARY <span class="hljs-keyword">KEY</span> (<span class="hljs-keyword">id</span>)
+);
+
+<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">INDEX</span> idx_todos_deadline <span class="hljs-keyword">ON</span> todos (deadline);
+<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">INDEX</span> idx_todos_category <span class="hljs-keyword">ON</span> todos (<span class="hljs-keyword">category</span>);
+</div></code></pre>
+<ul>
+<li>Test data seeding scripts: available <a href="https://github.com/cesarnunezh/growth-planner/blob/main/db/insert_test.sql">here</a>. Also here:</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> todos (title, <span class="hljs-keyword">category</span>, deadline)
+<span class="hljs-keyword">VALUES</span> (<span class="hljs-string">"Test 1"</span>, <span class="hljs-string">"School"</span>, <span class="hljs-string">"2026-01-26"</span>);
+
+<span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> todos (title, <span class="hljs-keyword">category</span>, deadline)
+<span class="hljs-keyword">VALUES</span> (<span class="hljs-string">"Test 2"</span>, <span class="hljs-string">"Health"</span>, <span class="hljs-string">"2025-02-20"</span>);
+
+<span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> todos (title, <span class="hljs-keyword">category</span>, deadline)
+<span class="hljs-keyword">VALUES</span> (<span class="hljs-string">"Test 3"</span>, <span class="hljs-string">"Work"</span>, <span class="hljs-string">"2026-02-03"</span>);
+</div></code></pre>
+<ul>
+<li>Screenshots showing successful database creation and seeding:
+<img src="/images/q6_1.png" alt=""></li>
+</ul>
+<h2 id="question-7-end-to-end-testing">Question 7: End-to-End Testing</h2>
+<p>Execute one end-to-end test scenario that simulates real user workflows to test user journey using testing frameworks like Selenium, Cypress, or Playwright, and generate test reports.</p>
+<h4 id="deliverables">Deliverables:</h4>
+<ul>
+<li>End-to-end test code/scripts:
+<ul>
+<li>EndToEndTest Class: <a href="https://github.com/cesarnunezh/growth-planner/blob/main/backend/app/tests/e2e/e2e_test.py">here</a></li>
+<li>Pytest for E2E: <a href="https://github.com/cesarnunezh/growth-planner/blob/main/backend/app/tests/e2e/test_todo_journey.py">here</a></li>
+</ul>
+</li>
+<li>Test execution screenshots:
+<img src="/images/q7_1.png" alt=""></li>
+<li>Generated test reports (HTML, XML, or similar format):</li>
+</ul>
+<pre class="hljs"><code><div>This XML file does not appear to have any style information associated with it. The document tree is shown below.
+<span class="hljs-tag">&lt;<span class="hljs-name">testsuites</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"pytest tests"</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">testsuite</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"pytest"</span> <span class="hljs-attr">errors</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">failures</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">skipped</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">tests</span>=<span class="hljs-string">"2"</span> <span class="hljs-attr">time</span>=<span class="hljs-string">"1.825"</span> <span class="hljs-attr">timestamp</span>=<span class="hljs-string">"2026-02-04T19:12:26.474911+00:00"</span> <span class="hljs-attr">hostname</span>=<span class="hljs-string">"f759f95eb097"</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">testcase</span> <span class="hljs-attr">classname</span>=<span class="hljs-string">"app.tests.e2e.test_todo_journey"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"test_constructor"</span> <span class="hljs-attr">time</span>=<span class="hljs-string">"0.343"</span>/&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">testcase</span> <span class="hljs-attr">classname</span>=<span class="hljs-string">"app.tests.e2e.test_todo_journey"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"test_user_journey"</span> <span class="hljs-attr">time</span>=<span class="hljs-string">"1.279"</span>/&gt;</span>
+...
+<span class="hljs-tag">&lt;/<span class="hljs-name">testsuite</span>&gt;</span>
+...
+<span class="hljs-tag">&lt;/<span class="hljs-name">testsuites</span>&gt;</span>
+</div></code></pre>
+<h2 id="question-8-performance-testing">Question 8: Performance Testing</h2>
+<p>Execute a single load test using tools like JMeter, k6, or Artillery, test application performance under expected load, generate performance reports, and set performance thresholds that must be met.</p>
+<h4 id="deliverables">Deliverables:</h4>
+<ul>
+<li>Load test configuration files: available <a href="https://github.com/cesarnunezh/growth-planner/blob/main/perf/k6_smoke.js">here</a></li>
+<li>Performance test execution logs: available <a href="https://cason-endocentric-zaiden.ngrok-free.dev/job/growth-planner-multi/job/main/9/artifact/perf_reports/k6_run.log">here</a>. Also a sample here:</li>
+</ul>
+<pre class="hljs"><code><div>
+         /\      Grafana   /â€¾â€¾/  
+    /\  /  \     |\  __   /  /   
+   /  \/    \    | |/ /  /   â€¾â€¾\ 
+  /          \   |   (  |  (â€¾)  |
+ / __________ \  |_|\_\  \_____/ 
+
+     execution: local
+        script: /perf/k6_smoke.js
+        output: -
+
+     scenarios: (100.00%) 1 scenario, 10 max VUs, 2m15s max duration (incl. graceful stop):
+              * default: Up to 10 looping VUs for 1m45s over 3 stages (gracefulRampDown: 30s, gracefulStop: 30s)
+
+
+running (0m01.0s), 01/10 VUs, 0 complete and 0 interrupted iterations
+default   [   1% ] 01/10 VUs  0m01.0s/1m45.0s
+
+running (0m02.0s), 01/10 VUs, 1 complete and 0 interrupted iterations
+default   [   2% ] 01/10 VUs  0m02.0s/1m45.0s
+
+running (0m03.0s), 01/10 VUs, 2 complete and 0 interrupted iterations
+default   [   3% ] 01/10 VUs  0m03.0s/1m45.0s
+
+running (0m04.0s), 02/10 VUs, 3 complete and 0 interrupted iterations
+default   [   4% ] 02/10 VUs  0m04.0s/1m45.0s
+
+running (0m05.0s), 02/10 VUs, 5 complete and 0 interrupted iterations
+default   [   5% ] 02/10 VUs  0m05.0s/1m45.0s
+
+running (0m06.0s), 02/10 VUs, 7 complete and 0 interrupted iterations
+default   [   6% ] 02/10 VUs  0m06.0s/1m45.0s
+
+running (0m07.0s), 03/10 VUs, 9 complete and 0 interrupted iterations
+default   [   7% ] 03/10 VUs  0m07.0s/1m45.0s
+
+running (0m08.0s), 03/10 VUs, 12 complete and 0 interrupted iterations
+default   [   8% ] 03/10 VUs  0m08.0s/1m45.0s
+
+running (0m09.0s), 03/10 VUs, 15 complete and 0 interrupted iterations
+default   [   9% ] 03/10 VUs  0m09.0s/1m45.0s
+</div></code></pre>
+<ul>
+<li>Performance reports with metrics and thresholds: available <a href="https://cason-endocentric-zaiden.ngrok-free.dev/job/growth-planner-multi/job/main/9/artifact/perf_reports/k6_run.log">here</a>. Also available here:</li>
+</ul>
+<pre class="hljs"><code><div>  â–ˆ THRESHOLDS 
+
+    checks
+    âœ“ 'rate&gt;0.99' rate=100.00%
+
+    http_req_duration
+    âœ“ 'p(95)&lt;500' p(95)=1.68ms
+
+    http_req_failed
+    âœ“ 'rate&lt;0.01' rate=0.00%
+
+
+  â–ˆ TOTAL RESULTS 
+
+    checks_total.......: 836     7.971877/s
+    checks_succeeded...: 100.00% 836 out of 836
+    checks_failed......: 0.00%   0 out of 836
+
+    âœ“ GET / returns 200
+
+    HTTP
+    http_req_duration..............: avg=1.02ms min=568.24Âµs med=923.02Âµs max=3.15ms p(90)=1.44ms p(95)=1.68ms
+      { expected_response:true }...: avg=1.02ms min=568.24Âµs med=923.02Âµs max=3.15ms p(90)=1.44ms p(95)=1.68ms
+    http_req_failed................: 0.00%  0 out of 836
+    http_reqs......................: 836    7.971877/s
+
+    EXECUTION
+    iteration_duration.............: avg=1s     min=1s       med=1s       max=1s     p(90)=1s     p(95)=1s    
+    iterations.....................: 836    7.971877/s
+    vus............................: 1      min=1        max=10
+    vus_max........................: 10     min=10       max=10
+
+    NETWORK
+    data_received..................: 7.2 MB 69 kB/s
+    data_sent......................: 57 kB  542 B/s
+</div></code></pre>
+<h2 id="question-9-notification-system">Question 9: Notification System</h2>
+<p>Configure Slack or email notifications for pipeline status, send notifications for successful deployments, and alert team members for pipeline failures with error details.</p>
+<h4 id="deliverables">Deliverables:</h4>
+<ul>
+<li>Notification configuration in Jenkins:
+<ul>
+<li>Configuration in Jenkins: <img src="/images/q9_1.png" alt=""></li>
+<li>Jenkinsfile sample code:</li>
+</ul>
+<pre class="hljs"><code><div>## End to End Testing Stage
+stage('End to End Tests') {
+  steps {
+    script {
+      try {
+        sh '''
+          set -eu
+          mkdir -p reports/e2e
+
+          docker compose -p &quot;$COMPOSE_PROJECT_NAME&quot; run --rm \
+            -v &quot;$PWD/reports/e2e:/backend/reports/e2e&quot; \
+            test sh -lc &quot;pytest -q -k test_todo_journey&quot; \
+              --junitxml=/backend/reports/e2e/junit.xml \
+        '''
+      } catch (error) {
+          slackSend(
+              channel: '#all-devopstest',
+              color: '#ff0000',
+              message: &quot;Failure @ End to End Tests - ${env.JOB_NAME} \nError details: ${error.getMessage()}&quot;
+          )
+          throw error 
+      }
+    }
+  }
+  post {
+    success {
+        slackSend channel: &quot;all-devopstest&quot;, color: &quot;#43e094&quot;, message: &quot;Success @ End to End Tests - ${env.JOB_NAME}&quot;
+    }
+    always {
+      junit 'reports/e2e/junit.xml'
+      archiveArtifacts artifacts: 'reports/e2e/**', fingerprint: true
+    }    
+  }
+}       
+</div></code></pre>
+</li>
+<li>Screenshots of successful deployment notification</li>
+</ul>1
+<p><img src="/images/q9_2.png" alt=""></p>
+<ul>
+<li>Screenshots of failure notifications with error details: This is an example of how the Slack notification plugin send a Failure message at Code Testing and Coverage Stage first, and then when solved send a Success message.</li>
+</ul>
+<p><img src="/images/q9_3.png" alt=""></p>
+
+</body>
+</html>

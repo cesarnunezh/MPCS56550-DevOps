@@ -78,3 +78,37 @@ Integration environment:
 
 User testing -> analyze a real case use of the application
 App load testing (scalability)
+
+Staging Environment Workflow Steps:
+- Artifact Promotion
+- Production-Like Deployment: update other services / migration scripts
+- Environment Validation: Mirror production configuration
+- Data Refresh: Load production-like data or sanitized production data subsets
+- User Acceptance Testing (UAT): Business users validate features meet requirements.
+- Performance Testing: Load testing, stress testing and performance benchmarking
+- Security Testing: penetration testing, vulnerability assessments, scurity scans
+- Regression Testing: ensure new changes don't break existing funcionalities
+- Infrastructure Testing: validate deployments scripts, database migrations, configurations
+- Monitoring Validation: Test alerting, logging, monitoring systems
+- Release Documentation: Finalize release notes, deployment guides, rollback procedures.
+
+Qualities of the pipeline
+- Cycle time: It should tell you right away
+- Traceability: you're able to know what stage fail and where it fails
+- Repeadability: It gives you the same result from the same stage.
+- Security: 
+
+# Lecture 5: Container Orchestration
+
+### Deployment strategies:
+- Blue/Green: Copy all the containers and just delete them when all users has migrated
+- Rolling Upgrade: Copy all the containers but delete them as each container has all users migrated from
+
+### Roll back/forward
+- Roll back: go back to a previos version of the app
+- Roll fordward: push something with failures -> fix it and deploy a new working version
+
+### Partial deployments
+- Canary testing: similar to the rolling testing, but we are testing getting feedback and then expanding 
+- A/B Testing: Testing some tweaks to the application to improve.
+

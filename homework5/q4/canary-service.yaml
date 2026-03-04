@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: canary-service
+spec:
+  selector:
+    app: h5-q4
+    type: canary
+  ports:
+    - name: http
+      port: 80
+      targetPort: 5678
