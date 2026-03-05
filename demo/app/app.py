@@ -138,7 +138,7 @@ def index():
       </head>
       <body>
         <main class="card">
-          <h1>SQS Subscribe Demo</h1>
+          <h1>DevOps Serverless Subscribe Demo</h1>
           <p>Enter your email to queue a subscription message through SQS.</p>
           <form method="post" action="/subscribe">
             <label for="email">Email address</label>
